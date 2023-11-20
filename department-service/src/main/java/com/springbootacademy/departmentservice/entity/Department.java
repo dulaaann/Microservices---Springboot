@@ -17,5 +17,6 @@ public class Department {
     private int id;
     private String departmentName;
     private String departmentDescription;
+    @Column(name = "department_code")
     private String departmentCode;
 }
