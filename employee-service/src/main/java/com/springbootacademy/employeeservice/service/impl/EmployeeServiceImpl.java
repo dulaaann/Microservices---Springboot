@@ -9,6 +9,8 @@ import com.springbootacademy.employeeservice.service.APIClient;
 import com.springbootacademy.employeeservice.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 @AllArgsConstructor
@@ -16,6 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
     private APIClient apiClient;
+    //private WebClient webClient;
+    //private RestTemplate restTemplate;
+
     @Override
     public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
         Employee employee = new Employee(
@@ -49,6 +54,14 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employeeById.getEmail(),
                 employeeById.getDepartment_code()
         );
+
+        //Rest template is to be implemented
+
+//        DepartmentDTO departmentDTO1 = webClient.get()
+//                .uri("http://localhost:8081/api/v1/department_service/"+employeeById.getDepartment_code())
+//                .retrieve()
+//                .bodyToMono(DepartmentDTO.class)
+//                .block();
 
         DepartmentDTO departmentDTO = apiClient.getDepartmentById(employeeById.getDepartment_code());
 
